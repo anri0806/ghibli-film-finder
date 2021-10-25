@@ -43,7 +43,7 @@ function renderFilms(filmData) {
        </li>
       `;
 
-      form.reset();
+      //form.reset();
 
     } else if (e.target.search_box.value === filmData.release_date) {
       let li = document.createElement("li");
