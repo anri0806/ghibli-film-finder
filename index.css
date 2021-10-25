@@ -1,0 +1,109 @@
+body {
+  margin: 0;
+  padding: 0;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.header::before{
+  content: "";
+  position: absolute;
+  top: 0px;
+  right: 0px;
+  bottom: 0px;
+  left: 0px;
+  background-image: url('https://www.wallpapertip.com/wmimgs/14-144529_spirited-away-field.jpg');
+  background-size: cover;
+  background-position: top center;
+  background-repeat: repeat-y;
+  opacity: 0.5;
+  filter: grayscale(60%);
+}
+
+.header {
+  overflow: auto;
+  background: #4e5659;
+}
+
+.header #icon {
+  width: 60px;
+  height: 63px;
+  float: left;
+  /* background-color: transparent; */
+  position: relative;  
+  /* mix-blend-mode: multiply; */
+}
+
+.header h2 {
+  color: white;
+  font-weight: bold;
+  float: left;
+
+  position: relative;
+}
+
+#search_section {
+  margin: 250px 0px 180px;
+  text-align: center;
+}
+
+#search_section h2 {
+  color: rgb(32, 30, 30);
+  font-size: 30px;
+  position: relative;
+}
+
+#form {
+  background: rgba(24, 23, 23, 0.5);
+  padding: 10px;
+  display: inline-block;
+  position: relative;
+}
+
+#select_films {
+  height: 45px;
+  padding: 10px;
+  border: 0px;
+  float: left;
+  position: relative;
+}
+
+#search_box {
+  height: 45px;
+  width: 400px;
+  padding: 10px;
+  border: 0px;
+  border-left: 1px solid #E0E0E0;
+  border-top: 1px solid #E0E0E0;
+  float: left;
+  position: relative;
+}
+
+#submit_btn {
+  height: 45px;
+  width: 100px;
+  background-color: #E69443;
+  color: white;
+  border: 0px;
+  float: left;
+  position: relative;
+}
+
+/* fix adjusting size later*/
+#container {
+  margin: 0px;
+  background-color: white;
+  position: relative;
+}
+
+#film_poster {
+  float: left;
+  width: 362px;
+  height: 540px;
+  padding: 70px;
+}
+
+#film_info {
+  display: block;
+  padding: 100px 0px;
+  width: 1200px;
+}
