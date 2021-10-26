@@ -37,7 +37,6 @@ body {
   color: white;
   font-weight: bold;
   float: left;
-
   position: relative;
 }
 
@@ -95,15 +94,21 @@ body {
   position: relative;
 }
 
+.film_list {
+  overflow: auto;
+}
+
 #film_poster {
   float: left;
-  width: 362px;
-  height: 540px;
+  width: 28%;
+  height: auto;
   padding: 70px;
 }
 
 #film_info {
   display: block;
+  float: left;
   padding: 100px 0px;
-  width: 1200px;
+  width: 54%;
+  height: auto;
 }
