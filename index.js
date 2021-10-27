@@ -6,6 +6,7 @@ let filmData = [];
 document.addEventListener("DOMContentLoaded", () => {
   fetchFilms();
   findForm();
+  //findImage()
 });
 
 ///Fetch films///
@@ -44,7 +45,7 @@ function handleSubmit(e) {
 
 ///Render films by search///
 function renderFilms(filmData) {
-  let container = document.querySelector("#container");
+  const container = document.querySelector("#container");
   container.innerHTML += `
       <li class="film_list">
        <img id="film_poster" src="${filmData.image}">
@@ -54,7 +55,20 @@ function renderFilms(filmData) {
        <p>Director: ${filmData.director}</p>
        <p>Released in ${filmData.release_date}</p>
        <p>${filmData.description}</p>
+       <p>See an <span id="film_banner">image</span> from this film</p>
        </div>
        </li>
       `;
+      
+}
+
+//Find the image text link
+function findImage() {
+  const imageLink = document.querySelector("#film_banner")
+  imageLink.addEventListener('click', popUpImage)
+}
+
+//Pop up banner image
+function popUpImage() {
+  console.log("hello")
 }

@@ -112,3 +112,9 @@ body {
   width: 54%;
   height: auto;
 }
+
+#film_banner {
+  color: #38138F;
+  text-decoration: underline;
+  cursor: pointer
+}
