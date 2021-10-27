@@ -30,13 +30,16 @@ function handleSubmit(e) {
     const film = filmData.find((data) => data.title === select_films.value);
     renderFilms(film);
   } else if (e.target.search_box.value) {
-    const films = filmData.filter(
-      (data) => data.release_date === search_box.value
-    );
-    films.forEach((film) => renderFilms(film));
+    const films = filmData.filter((data) => data.release_date === search_box.value);
+
+    if (films.length === 0) {
+      alert("invalid year"); ///////CHANGE TEXT LATER/////////
+    } else if (films) {
+      films.forEach((film) => renderFilms(film));
+    }
   }
 
-  document.querySelector("#form").reset()
+  document.querySelector("#form").reset();
 }
 
 ///Render films by search///
