@@ -47,7 +47,7 @@ function handleSubmit(e) {
 function renderFilms(filmData) {
   const container = document.querySelector("#container");
   container.innerHTML += `
-      <li class="film_list">
+      <div class="film_list">
        <img id="film_poster" src="${filmData.image}">
        <div id="film_info">
        <h2>${filmData.title}</h2>
@@ -57,9 +57,10 @@ function renderFilms(filmData) {
        <p>${filmData.description}</p>
        <p>See an <span id="film_banner">image</span> from this film</p>
        </div>
-       </li>
+       </div>
       `;
-      
+
+      findImage()
 }
 
 //Find the image text link
@@ -68,7 +69,17 @@ function findImage() {
   imageLink.addEventListener('click', popUpImage)
 }
 
-//Pop up banner image
+//Render pop up image 
 function popUpImage() {
-  console.log("hello")
+  const popUpWindow = document.createElement('div')
+  popUpWindow.className = "pop_up"
+  
+  popUpWindow.innerHTML = `
+  <span class="close">x</span>
+  <p>TEST</p>
+  `
+
+  document.querySelector("#container").appendChild(popUpWindow)
 }
+
+//  <img class="banner_image" src="${filmData.movie_banner}">
