@@ -6,7 +6,8 @@ let filmData = [];
 document.addEventListener("DOMContentLoaded", () => {
   fetchFilms();
   findForm();
-  //findImage()
+  //findSpan();
+  //findClose();
 });
 
 ///Fetch films///
@@ -31,7 +32,9 @@ function handleSubmit(e) {
     const film = filmData.find((data) => data.title === select_films.value);
     renderFilms(film);
   } else if (e.target.search_box.value) {
-    const films = filmData.filter((data) => data.release_date === search_box.value);
+    const films = filmData.filter(
+      (data) => data.release_date === search_box.value
+    );
 
     if (films.length === 0) {
       alert("invalid year"); ///////CHANGE TEXT LATER/////////
@@ -55,31 +58,71 @@ function renderFilms(filmData) {
        <p>Director: ${filmData.director}</p>
        <p>Released in ${filmData.release_date}</p>
        <p>${filmData.description}</p>
-       <p>See an <span id="film_banner">image</span> from this film</p>
+       <p>See an <span class="span">image</span> from this film</p>
        </div>
        </div>
       `;
 
-      findImage()
+  popUpBanner(filmData);
+  // document.querySelector(".span").addEventListener("click", () => {
+  //   const popUpWindow = document.createElement("div");
+  //   popUpWindow.className = "popup_window";
+
+  //   popUpWindow.innerHTML = `
+  //     <span class="close">x</span>
+  //     <img class="banner_image" src="${filmData.movie_banner}">
+  //     `;
+
+  //   document.querySelector("#container").appendChild(popUpWindow);
+  // });
 }
 
-//Find the image text link
-function findImage() {
-  const imageLink = document.querySelector("#film_banner")
-  imageLink.addEventListener('click', popUpImage)
+//Find span to attach event listener
+function popUpBanner(filmData) {
+  document.querySelector(".span").addEventListener("click", () => {
+    const popUpWindow = document.createElement("div");
+    popUpWindow.id = "popup_window";
+
+    popUpWindow.innerHTML = `
+      <span id="close">x</span>
+      <img id="banner_image" src="${filmData.movie_banner}">
+      `;
+
+    document.querySelector("#container").appendChild(popUpWindow);
+
+    findClose()
+  });
 }
 
-//Render pop up image 
-function popUpImage() {
-  const popUpWindow = document.createElement('div')
-  popUpWindow.className = "pop_up"
-  
-  popUpWindow.innerHTML = `
-  <span class="close">x</span>
-  <p>TEST</p>
-  `
+// //Handle findSpan event listener
+// function handleBanner() {
+//   const imgLink = filmData.filter((data) => data.movie_banner);
+//   console.log(imgLink)
+//   //renderBanner(imgLink);
+// }
 
-  document.querySelector("#container").appendChild(popUpWindow)
+// //Render pop up image
+// function renderBanner(filmData) {
+//   const popUpWindow = document.createElement("div");
+//   popUpWindow.className = "popup_window";
+
+//   popUpWindow.innerHTML = `
+//   <span class="close">x</span>
+//   <img class="banner_image" src="${filmData.movie_banner}">
+//   `;
+
+//   document.querySelector("#container").appendChild(popUpWindow);
+
+//   findClose()
+// }
+
+//Find close button
+function findClose() {
+  document.querySelector("#close").addEventListener("click", closeWindow);
 }
 
-//  <img class="banner_image" src="${filmData.movie_banner}">
+//Close popup window
+function closeWindow() {
+  const popUpWindow = document.querySelector("#popup_window")
+  popUpWindow.remove();
+}
