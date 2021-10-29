@@ -1,20 +1,18 @@
 // RUN json-server --watch db.json
 //git add . -> git commit -m -> git push
 
-let filmData = [];
+let fetchedFilmData = [];
 
 document.addEventListener("DOMContentLoaded", () => {
   fetchFilms();
   findForm();
-  //findSpan();
-  //findClose();
 });
 
 ///Fetch films///
 function fetchFilms() {
   fetch("https://ghibliapi.herokuapp.com/films")
     .then((response) => response.json())
-    .then((data) => (filmData = data));
+    .then((data) => (fetchedFilmData = data));
 }
 
 ///Find the form///
@@ -29,17 +27,19 @@ function handleSubmit(e) {
   document.querySelector("#container").innerHTML = " ";
 
   if (e.target.select_films.value) {
-    const film = filmData.find((data) => data.title === select_films.value);
+    const film = fetchedFilmData.find(
+      (data) => data.title === select_films.value
+    );
     renderFilms(film);
   } else if (e.target.search_box.value) {
-    const films = filmData.filter(
+    const films = fetchedFilmData.filter(
       (data) => data.release_date === search_box.value
     );
 
     if (films.length === 0) {
       alert("invalid year"); ///////CHANGE TEXT LATER/////////
     } else if (films) {
-      films.forEach((film) => renderFilms(film));
+      films.forEach((filmsData) => renderFilms(filmsData));
     }
   }
 
@@ -58,71 +58,55 @@ function renderFilms(filmData) {
        <p>Director: ${filmData.director}</p>
        <p>Released in ${filmData.release_date}</p>
        <p>${filmData.description}</p>
-       <p>See an <span class="span">image</span> from this film</p>
+       <p>See an <span class="span" id="${filmData.id}">image</span> from this film</p>
        </div>
        </div>
       `;
 
   popUpBanner(filmData);
-  // document.querySelector(".span").addEventListener("click", () => {
-  //   const popUpWindow = document.createElement("div");
-  //   popUpWindow.className = "popup_window";
-
-  //   popUpWindow.innerHTML = `
-  //     <span class="close">x</span>
-  //     <img class="banner_image" src="${filmData.movie_banner}">
-  //     `;
-
-  //   document.querySelector("#container").appendChild(popUpWindow);
-  // });
 }
 
-//Find span to attach event listener
+/////////use FOR EACH to apply two objects(fetchedFilmData) on new element?///////
+/////Why filmData shows only one inside event listener? //////////
+///because I click one span = meaning only shows one filmData?//
+
+//Added id on <span> to differentiate each span. => use if statement?//
+//=> it console.log right id but doesn't render DOM//
+
+//Find span and render banner
 function popUpBanner(filmData) {
-  document.querySelector(".span").addEventListener("click", () => {
-    const popUpWindow = document.createElement("div");
-    popUpWindow.id = "popup_window";
+  //console.log("filmData outside: ",filmData.id)
 
-    popUpWindow.innerHTML = `
-      <span id="close">x</span>
-      <img id="banner_image" src="${filmData.movie_banner}">
-      `;
+  document.querySelectorAll(".span").forEach((item) => {
+    item.addEventListener("click", () => {
+      //console.log("filmData inside: ",filmData.id)
+      fetchedFilmData.filter(fetchedData => {
+        
+        if (fetchedData.id === item.id) {
+          const popUpWindow = document.createElement("div");
+          popUpWindow.id = "popup_window";
+  
+          popUpWindow.innerHTML += `
+          <span id="close">x</span>
+          <img id="banner_image" src="${fetchedData.movie_banner}">
+          `;
+  
+          document.querySelector("#container").appendChild(popUpWindow);
+        }
+      })
 
-    document.querySelector("#container").appendChild(popUpWindow);
-
-    findClose()
+      findCloseBtn();
+    });
   });
 }
 
-// //Handle findSpan event listener
-// function handleBanner() {
-//   const imgLink = filmData.filter((data) => data.movie_banner);
-//   console.log(imgLink)
-//   //renderBanner(imgLink);
-// }
-
-// //Render pop up image
-// function renderBanner(filmData) {
-//   const popUpWindow = document.createElement("div");
-//   popUpWindow.className = "popup_window";
-
-//   popUpWindow.innerHTML = `
-//   <span class="close">x</span>
-//   <img class="banner_image" src="${filmData.movie_banner}">
-//   `;
-
-//   document.querySelector("#container").appendChild(popUpWindow);
-
-//   findClose()
-// }
-
 //Find close button
-function findClose() {
+function findCloseBtn() {
   document.querySelector("#close").addEventListener("click", closeWindow);
 }
 
 //Close popup window
 function closeWindow() {
-  const popUpWindow = document.querySelector("#popup_window")
+  const popUpWindow = document.querySelector("#popup_window");
   popUpWindow.remove();
 }
