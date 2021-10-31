@@ -85,6 +85,7 @@ body {
   border: 0px;
   float: left;
   position: relative;
+  cursor: pointer;
 }
 
 /* fix adjusting size later*/
@@ -108,10 +109,27 @@ body {
 #film_info {
   display: block;
   float: left;
-  padding: 100px 0px;
+  padding: 90px 0px;
   width: 54%;
   height: auto;
 }
+
+.film_title {
+  display: inline-block;
+}
+
+.empty_heart {
+  font-size: 18px;
+  color: red;
+  width: 4%;
+  float: right;
+  padding: 20px;
+  cursor: pointer;
+}
+
+/* .like {
+   display: inline-block;
+} */
 
 .span {
   color: #38138F;

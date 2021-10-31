@@ -37,7 +37,7 @@ function handleSubmit(e) {
     );
 
     if (films.length === 0) {
-      alert("invalid year"); ///////CHANGE TEXT LATER/////////
+      alert("invalid year");
     } else if (films) {
       films.forEach((filmsData) => renderFilms(filmsData));
     }
@@ -53,7 +53,8 @@ function renderFilms(filmData) {
       <div class="film_list">
        <img id="film_poster" src="${filmData.image}">
        <div id="film_info">
-       <h2>${filmData.title}</h2>
+       <img class="empty_heart" src="./emptyHeart.png">
+       <h2 class="film_title">${filmData.title}</h2>
        <p>Original title in Japanese: ${filmData.original_title} (${filmData.original_title_romanised})</p>
        <p>Director: ${filmData.director}</p>
        <p>Released in ${filmData.release_date}</p>
@@ -63,50 +64,57 @@ function renderFilms(filmData) {
        </div>
       `;
 
-  popUpBanner(filmData);
+
+  popUpBanner();
+  findLike();
 }
 
-/////////use FOR EACH to apply two objects(fetchedFilmData) on new element?///////
-/////Why filmData shows only one inside event listener? //////////
-///because I click one span = meaning only shows one filmData?//
-
-//Added id on <span> to differentiate each span. => use if statement?//
-//=> it console.log right id but doesn't render DOM//
-
-//Find span and render banner
-function popUpBanner(filmData) {
-  //console.log("filmData outside: ",filmData.id)
-
-  document.querySelectorAll(".span").forEach((item) => {
-    item.addEventListener("click", () => {
-      //console.log("filmData inside: ",filmData.id)
-      fetchedFilmData.filter(fetchedData => {
-        
-        if (fetchedData.id === item.id) {
+///Find image(span) button & Render banner///
+function popUpBanner() {
+  document.querySelectorAll(".span").forEach((span) => {
+    span.addEventListener("click", () => {
+      fetchedFilmData.filter((fetchedData) => {
+        if (fetchedData.id === span.id) {
           const popUpWindow = document.createElement("div");
           popUpWindow.id = "popup_window";
-  
+
           popUpWindow.innerHTML += `
-          <span id="close">x</span>
-          <img id="banner_image" src="${fetchedData.movie_banner}">
-          `;
-  
+              <span id="close">x</span>
+              <img id="banner_image" src="${fetchedData.movie_banner}">
+              `;
+
           document.querySelector("#container").appendChild(popUpWindow);
         }
-      })
+      });
 
       findCloseBtn();
     });
   });
 }
 
-//Find close button
+///Find close button///
 function findCloseBtn() {
   document.querySelector("#close").addEventListener("click", closeWindow);
 }
 
-//Close popup window
+///Close popup window///
 function closeWindow() {
   const popUpWindow = document.querySelector("#popup_window");
   popUpWindow.remove();
+}
+
+
+//CHANGE HEART TO RED///
+///Find like button & like film///
+function findLike() {
+  document.querySelectorAll(".empty_heart").forEach(heart => {
+    heart.addEventListener("click", (e) => {
+      console.log(e.target.classList)
+
+      if(e.target.classList.contains("empty_heart")) {
+        console.log("clicked")
+
+    }
+  })
+})
 }
