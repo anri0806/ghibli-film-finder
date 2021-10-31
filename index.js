@@ -64,7 +64,6 @@ function renderFilms(filmData) {
        </div>
       `;
 
-
   popUpBanner();
   findLike();
 }
@@ -103,18 +102,20 @@ function closeWindow() {
   popUpWindow.remove();
 }
 
-
 //CHANGE HEART TO RED///
 ///Find like button & like film///
 function findLike() {
-  document.querySelectorAll(".empty_heart").forEach(heart => {
+  document.querySelectorAll(".empty_heart").forEach((heart) => {
     heart.addEventListener("click", (e) => {
-      console.log(e.target.classList)
-
-      if(e.target.classList.contains("empty_heart")) {
-        console.log("clicked")
-
-    }
-  })
-})
+      if (e.target.classList.contains("empty_heart")) {
+        e.target.src = "./fullHeart.png";
+        e.target.classList.remove("empty_heart")
+        e.target.classList.add("full_heart")
+      } else if(e.target.classList.contains("full_heart")) {
+        e.target.src = "./emptyHeart.png";
+        e.target.classList.remove("full_heart")
+        e.target.classList.add("empty_heart")
+      }
+    });
+  });
 }

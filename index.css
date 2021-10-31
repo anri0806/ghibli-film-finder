@@ -119,8 +119,13 @@ body {
 }
 
 .empty_heart {
-  font-size: 18px;
-  color: red;
+  width: 4%;
+  float: right;
+  padding: 20px;
+  cursor: pointer;
+}
+
+.full_heart {
   width: 4%;
   float: right;
   padding: 20px;
