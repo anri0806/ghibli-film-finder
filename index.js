@@ -133,7 +133,7 @@ function findLike() {
 
         addFilm(heart);
 
-        alert("Added to My Favorite!")
+        alert("Added to My Favorite!");
       }
     });
   });
@@ -143,17 +143,31 @@ function findLike() {
 function addFilm(heart) {
   fetchedFilmData.filter((data) => {
     if (data.title === heart.id) {
-      const ul = document.createElement("ul");
-      ul.id = "favorite_list";
+      const div = document.createElement("div");
+      div.className = "list"
 
-      ul.innerHTML = `
+      div.innerHTML = `
       <li>${data.title}</li>
-      <button>remove</button>
+      <button class="remove_button">remove</button>
       `;
 
-      document.querySelector("#my_favorite").appendChild(ul);
+      document.querySelector("#my_favorite").appendChild(div);
     }
   });
+
+  removeFilm();
 }
 
+///Remove film from favorite list///
+function removeFilm() {
+  const buttons = document.querySelectorAll(".remove_button");
+  buttons.forEach((button) => {
+    button.addEventListener("click", () => {
+      const lists = document.querySelectorAll(".list");
 
+      lists.forEach((list) => {
+        list.remove();
+      });
+    });
+  });
+}

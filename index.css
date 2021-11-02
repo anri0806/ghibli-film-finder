@@ -77,11 +77,11 @@ body {
   text-align: center;
 }
 
-#favorite_list li {
+.list li{
   display: inline-block;
 }
 
-#favorite_list button {
+.list button {
   display: inline-block;
 }
 
