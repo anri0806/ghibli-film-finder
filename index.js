@@ -144,7 +144,7 @@ function addFilm(heart) {
   fetchedFilmData.filter((data) => {
     if (data.title === heart.id) {
       const div = document.createElement("div");
-      div.className = "list"
+      div.className = "list";
 
       div.innerHTML = `
       <li>${data.title}</li>
@@ -162,12 +162,8 @@ function addFilm(heart) {
 function removeFilm() {
   const buttons = document.querySelectorAll(".remove_button");
   buttons.forEach((button) => {
-    button.addEventListener("click", () => {
-      const lists = document.querySelectorAll(".list");
-
-      lists.forEach((list) => {
-        list.remove();
-      });
+    button.addEventListener("click", (e) => {
+      e.target.parentNode.remove();
     });
   });
 }
