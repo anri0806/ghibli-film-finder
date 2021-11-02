@@ -6,9 +6,22 @@ let fetchedFilmData = [];
 document.addEventListener("DOMContentLoaded", () => {
   fetchFilms();
   findForm();
+  myFavorite()
 });
 
+///My favorite tab///
+function myFavorite() {
+  const tab = document.querySelector("[data-tab-target]")
+  const content = document.querySelector("[data-tab-content]")
+
+  tab.addEventListener("click", () => {
+    const tabTarget = document.querySelector(tab.dataset.tabTarget)
+    tabTarget.classList.add('active')
+  })
+}
+
 ///Fetch films///
+//API url => "http://localhost:3000/films"//
 function fetchFilms() {
   fetch("https://ghibliapi.herokuapp.com/films")
     .then((response) => response.json())
@@ -102,19 +115,23 @@ function closeWindow() {
   popUpWindow.remove();
 }
 
-//CHANGE HEART TO RED///
 ///Find like button & like film///
 function findLike() {
   document.querySelectorAll(".empty_heart").forEach((heart) => {
     heart.addEventListener("click", (e) => {
       if (e.target.classList.contains("empty_heart")) {
         e.target.src = "./fullHeart.png";
-        e.target.classList.remove("empty_heart")
-        e.target.classList.add("full_heart")
-      } else if(e.target.classList.contains("full_heart")) {
+        e.target.classList.remove("empty_heart");
+        e.target.classList.add("full_heart");
+
+    
+
+      } else if (e.target.classList.contains("full_heart")) {
         e.target.src = "./emptyHeart.png";
-        e.target.classList.remove("full_heart")
-        e.target.classList.add("empty_heart")
+        e.target.classList.remove("full_heart");
+        e.target.classList.add("empty_heart");
+
+
       }
     });
   });
