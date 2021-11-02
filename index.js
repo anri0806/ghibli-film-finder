@@ -6,18 +6,22 @@ let fetchedFilmData = [];
 document.addEventListener("DOMContentLoaded", () => {
   fetchFilms();
   findForm();
-  myFavorite()
+  myFavorite();
 });
 
 ///My favorite tab///
 function myFavorite() {
-  const tab = document.querySelector("[data-tab-target]")
-  const content = document.querySelector("[data-tab-content]")
+  const tabs = document.querySelectorAll("[data-tab-target]");
+  const content = document.querySelectorAll("[data-tab-content]");
 
-  tab.addEventListener("click", () => {
-    const tabTarget = document.querySelector(tab.dataset.tabTarget)
-    tabTarget.classList.add('active')
-  })
+  tabs.forEach((tab) => {
+    tab.addEventListener("click", () => {
+      const tabTarget = document.querySelector(tab.dataset.tabTarget);
+
+      content.classList.remove("active");
+      tabTarget.classList.add("active");
+    });
+  });
 }
 
 ///Fetch films///
@@ -123,15 +127,10 @@ function findLike() {
         e.target.src = "./fullHeart.png";
         e.target.classList.remove("empty_heart");
         e.target.classList.add("full_heart");
-
-    
-
       } else if (e.target.classList.contains("full_heart")) {
         e.target.src = "./emptyHeart.png";
         e.target.classList.remove("full_heart");
         e.target.classList.add("empty_heart");
-
-
       }
     });
   });
