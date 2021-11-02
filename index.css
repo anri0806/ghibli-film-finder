@@ -73,7 +73,16 @@ body {
 }
 
 #favorite_list {
-  padding: 40px;
+  list-style-type: none;
+  text-align: center;
+}
+
+#favorite_list li {
+  display: inline-block;
+}
+
+#favorite_list button {
+  display: inline-block;
 }
 
 #search_section {

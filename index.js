@@ -73,7 +73,7 @@ function renderFilms(filmData) {
       <div class="film_list">
        <img id="film_poster" src="${filmData.image}">
        <div id="film_info">
-       <img class="empty_heart" src="./emptyHeart.png">
+       <img id="${filmData.title}" class="empty_heart" src="./emptyHeart.png">
        <h2 class="film_title">${filmData.title}</h2>
        <p>Original title in Japanese: ${filmData.original_title} (${filmData.original_title_romanised})</p>
        <p>Director: ${filmData.director}</p>
@@ -130,11 +130,30 @@ function findLike() {
         e.target.src = "./fullHeart.png";
         e.target.classList.remove("empty_heart");
         e.target.classList.add("full_heart");
-      } else if (e.target.classList.contains("full_heart")) {
-        e.target.src = "./emptyHeart.png";
-        e.target.classList.remove("full_heart");
-        e.target.classList.add("empty_heart");
+
+        addFilm(heart);
+
+        alert("Added to My Favorite!")
       }
     });
   });
 }
+
+///Add to favorite list///
+function addFilm(heart) {
+  fetchedFilmData.filter((data) => {
+    if (data.title === heart.id) {
+      const ul = document.createElement("ul");
+      ul.id = "favorite_list";
+
+      ul.innerHTML = `
+      <li>${data.title}</li>
+      <button>remove</button>
+      `;
+
+      document.querySelector("#my_favorite").appendChild(ul);
+    }
+  });
+}
+
+
