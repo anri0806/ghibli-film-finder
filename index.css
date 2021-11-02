@@ -59,6 +59,23 @@ body {
   position: relative;
 }
 
+#my_favorite {
+  /* background-color: white; */
+  background: rgba(255, 247, 247, 0.358);
+  text-align: center;
+  margin: 50px 400px;
+}
+
+#my_favorite h2 {
+  padding: 20px;
+  margin-bottom: 0px;
+  color: #4e5659;
+}
+
+#favorite_list {
+  padding: 40px;
+}
+
 #search_section {
   margin: 250px 0px 180px;
   text-align: center;

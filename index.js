@@ -12,13 +12,16 @@ document.addEventListener("DOMContentLoaded", () => {
 ///My favorite tab///
 function myFavorite() {
   const tabs = document.querySelectorAll("[data-tab-target]");
-  const content = document.querySelectorAll("[data-tab-content]");
+  const contents = document.querySelectorAll("[data-tab-content]");
 
   tabs.forEach((tab) => {
     tab.addEventListener("click", () => {
       const tabTarget = document.querySelector(tab.dataset.tabTarget);
 
-      content.classList.remove("active");
+      contents.forEach((content) => {
+        content.classList.remove("active");
+      });
+
       tabTarget.classList.add("active");
     });
   });
