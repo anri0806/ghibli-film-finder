@@ -1,6 +1,3 @@
-// RUN json-server --watch db.json
-//git add . -> git commit -m -> git push
-
 let fetchedFilmData = [];
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -9,7 +6,9 @@ document.addEventListener("DOMContentLoaded", () => {
   myFavorite();
 });
 
-///My favorite tab///
+
+
+//////My favorite tab//////
 function myFavorite() {
   const tabs = document.querySelectorAll("[data-tab-target]");
   const contents = document.querySelectorAll("[data-tab-content]");
@@ -27,21 +26,19 @@ function myFavorite() {
   });
 }
 
-///Fetch films///
-//API url => "http://localhost:3000/films"//
+
+
+//////Search films//////
 function fetchFilms() {
   fetch("https://ghibliapi.herokuapp.com/films")
     .then((response) => response.json())
     .then((data) => (fetchedFilmData = data));
 }
 
-///Find the form///
 function findForm() {
-  let form = document.querySelector("#form");
-  form.addEventListener("submit", handleSubmit);
+  document.querySelector("#form").addEventListener("submit", handleSubmit);
 }
 
-///Handle event listener///
 function handleSubmit(e) {
   e.preventDefault();
   document.querySelector("#container").innerHTML = " ";
@@ -57,7 +54,7 @@ function handleSubmit(e) {
     );
 
     if (films.length === 0) {
-      alert("invalid year");
+      alert("Invalid year");
     } else if (films) {
       films.forEach((filmsData) => renderFilms(filmsData));
     }
@@ -66,7 +63,9 @@ function handleSubmit(e) {
   document.querySelector("#form").reset();
 }
 
-///Render films by search///
+
+
+//////Render films//////
 function renderFilms(filmData) {
   const container = document.querySelector("#container");
   container.innerHTML += `
@@ -88,7 +87,9 @@ function renderFilms(filmData) {
   findLike();
 }
 
-///Find image(span) button & Render banner///
+
+
+//////Render banner in a pop up window//////
 function popUpBanner() {
   document.querySelectorAll(".span").forEach((span) => {
     span.addEventListener("click", () => {
@@ -111,18 +112,21 @@ function popUpBanner() {
   });
 }
 
-///Find close button///
+
+
+//////Close popup window//////
 function findCloseBtn() {
   document.querySelector("#close").addEventListener("click", closeWindow);
 }
 
-///Close popup window///
 function closeWindow() {
   const popUpWindow = document.querySelector("#popup_window");
   popUpWindow.remove();
 }
 
-///Find like button & like film///
+
+
+//////like films//////
 function findLike() {
   document.querySelectorAll(".empty_heart").forEach((heart) => {
     heart.addEventListener("click", (e) => {
@@ -132,36 +136,37 @@ function findLike() {
         e.target.classList.add("full_heart");
 
         addFilm(heart);
-
-        alert("Added to My Favorite!");
       }
     });
   });
 }
 
-///Add to favorite list///
+
+
+//////Add to my favorite//////
 function addFilm(heart) {
   fetchedFilmData.filter((data) => {
     if (data.title === heart.id) {
-      const div = document.createElement("div");
-      div.className = "list";
+      const li = document.createElement("li");
 
-      div.innerHTML = `
-      <li>${data.title}</li>
+      li.innerHTML = `
+      <img src="${data.image}">
       <button class="remove_button">remove</button>
       `;
 
-      document.querySelector("#my_favorite").appendChild(div);
+      document.querySelector("#favorite_list").appendChild(li);
+      alert("Added to My Favorite!");
     }
   });
 
   removeFilm();
 }
 
-///Remove film from favorite list///
+
+
+//////Remove film from my favorite//////
 function removeFilm() {
-  const buttons = document.querySelectorAll(".remove_button");
-  buttons.forEach((button) => {
+  document.querySelectorAll(".remove_button").forEach((button) => {
     button.addEventListener("click", (e) => {
       e.target.parentNode.remove();
     });

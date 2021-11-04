@@ -4,17 +4,17 @@ body {
   font-family: Arial, Helvetica, sans-serif;
 }
 
+/* HEADER */
 .header::before {
   content: "";
-  position: absolute;
+  position: fixed;
   top: 0px;
   right: 0px;
   bottom: 0px;
   left: 0px;
   background-image: url("https://www.wallpapertip.com/wmimgs/14-144529_spirited-away-field.jpg");
   background-size: cover;
-  background-position: top center;
-  background-repeat: repeat-y;
+  background-position: center;
   opacity: 0.5;
   filter: grayscale(60%);
 }
@@ -40,6 +40,7 @@ body {
 
 .header p {
   color: white;
+  font-size: 18px;
   float: left;
   position: relative;
   margin: 25px 0px 0px 50px;
@@ -50,7 +51,7 @@ body {
   cursor: pointer;
 }
 
-[data-tab-content]{
+[data-tab-content] {
   display: none;
 }
 
@@ -59,32 +60,46 @@ body {
   position: relative;
 }
 
+
+
+/* MY FAVORITE TAB */
 #my_favorite {
-  /* background-color: white; */
-  background: rgba(255, 247, 247, 0.358);
-  text-align: center;
-  margin: 50px 400px;
+  background-color: rgba(255, 247, 247, 0.434);
+  margin: 50px 245px; 
 }
 
 #my_favorite h2 {
-  padding: 20px;
-  margin-bottom: 0px;
+  padding: 40px;
   color: #4e5659;
+  text-decoration: underline;
+  text-align: center;
 }
 
 #favorite_list {
   list-style-type: none;
-  text-align: center;
-}
-
-.list li{
   display: inline-block;
+  margin: auto;
 }
 
-.list button {
+#favorite_list li {
+  padding: 20px;
   display: inline-block;
+  position: relative;
 }
 
+#favorite_list img {
+  width: 250px;
+  height: auto;
+} 
+
+#favorite_list button {
+  display: block;
+  margin: auto;
+} 
+
+
+
+/* HOME - SEARCH BAR */
 #search_section {
   margin: 250px 0px 180px;
   text-align: center;
@@ -133,13 +148,9 @@ body {
   cursor: pointer;
 }
 
-#footer_totoro {
-  position: relative;
-  margin: 20px;
-  float: right;
-  width: 8%;
-}
 
+
+/* HOME - FILM LIST */
 #container {
   margin: 0px;
   padding: 0px;
@@ -149,13 +160,14 @@ body {
 
 .film_list {
   overflow: auto;
+  padding: 40px;
 }
 
 #film_poster {
   float: left;
   width: 28%;
   height: auto;
-  padding: 70px 70px 0px;
+  padding: 70px 70px;
 }
 
 #film_info {
@@ -190,6 +202,9 @@ body {
   cursor: pointer;
 }
 
+
+
+/* HOME - POPUP WINDOW */
 #popup_window {
   position: fixed;
   padding-top: 100px;
@@ -218,4 +233,14 @@ body {
   margin: auto;
   display: block;
   width: 80%;
+}
+
+
+
+/* FOOTER */
+#footer_totoro {
+  position: fixed;
+  bottom: 0px;
+  right: 1%;
+  width: 7%;
 }
