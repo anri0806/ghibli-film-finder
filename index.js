@@ -72,7 +72,7 @@ function renderFilms(filmData) {
       <div class="film_list">
        <img id="film_poster" src="${filmData.image}">
        <div id="film_info">
-       <img id="${filmData.title}" class="empty_heart" src="./emptyHeart.png">
+       <img id="${filmData.title}" class="empty_heart" src="./image/emptyHeart.png">
        <h2 class="film_title">${filmData.title}</h2>
        <p>Original title in Japanese: ${filmData.original_title} (${filmData.original_title_romanised})</p>
        <p>Director: ${filmData.director}</p>
@@ -131,7 +131,7 @@ function findLike() {
   document.querySelectorAll(".empty_heart").forEach((heart) => {
     heart.addEventListener("click", (e) => {
       if (e.target.classList.contains("empty_heart")) {
-        e.target.src = "./fullHeart.png";
+        e.target.src = "./image/fullHeart.png";
         e.target.classList.remove("empty_heart");
         e.target.classList.add("full_heart");
 
